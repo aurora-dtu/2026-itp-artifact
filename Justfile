@@ -8,3 +8,4 @@ copy:
         --exclude .vscode/
     cd ../theory/docbuild/ && just
     rsync -av --progress ../theory/docbuild/.lake/build/doc .
+    touch doc/.nojekyll
