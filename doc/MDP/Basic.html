@@ -1,0 +1,673 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href=".././style.css"></link><link rel="icon" href=".././favicon.svg"></link><link rel="mask-icon" href=".././favicon.svg" color="#000000"></link><link rel="prefetch" href=".././/declarations/declaration-data.bmp" as="image"></link><title>MDP.Basic</title><script defer="true" src=".././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT=".././";</script><script>const MODULE_NAME="MDP.Basic";</script><script type="module" src=".././jump-src.js"></script><script type="module" src=".././search.js"></script><script type="module" src=".././expand-nav.js"></script><script type="module" src=".././how-about.js"></script><script type="module" src=".././instances.js"></script><script type="module" src=".././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span>Documentation</span></h1><h2 class="header_filename break_within"><span class="name">MDP</span>.<span class="name">Basic</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href=".././Init.html">Init</a></li><li><a href=".././Mathlib/Probability/ProbabilityMassFunction/Basic.html">Mathlib.Probability.ProbabilityMassFunction.Basic</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-MDP.Basic" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#MDP"><span class="name">MDP</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.P"><span class="name">MDP</span>.<span class="name">P</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.act"><span class="name">MDP</span>.<span class="name">act</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs"><span class="name">MDP</span>.<span class="name">succs</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.prev"><span class="name">MDP</span>.<span class="name">prev</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs_univ"><span class="name">MDP</span>.<span class="name">succs_univ</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.prev_univ"><span class="name">MDP</span>.<span class="name">prev_univ</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.mem_prev_univ_iff_mem_succs_univ"><span class="name">MDP</span>.<span class="name">mem_prev_univ_iff_mem_succs_univ</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.FiniteBranching"><span class="name">MDP</span>.<span class="name">FiniteBranching</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.ofP"><span class="name">MDP</span>.<span class="name">ofP</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.ofP_P"><span class="name">MDP</span>.<span class="name">ofP_P</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.P_le_one"><span class="name">MDP</span>.<span class="name">P_le_one</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.P_ne_top"><span class="name">MDP</span>.<span class="name">P_ne_top</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instFiniteElemActOfFintype"><span class="name">MDP</span>.<span class="name">instFiniteElemActOfFintype</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instFintypeAct"><span class="name">MDP</span>.<span class="name">instFintypeAct</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instNonemptyAct"><span class="name">MDP</span>.<span class="name">instNonemptyAct</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.default_act"><span class="name">MDP</span>.<span class="name">default_act</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.default_act_spec"><span class="name">MDP</span>.<span class="name">default_act_spec</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instFiniteElemActOfFiniteBranching"><span class="name">MDP</span>.<span class="name">instFiniteElemActOfFiniteBranching</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instFintypeElemActOfFiniteBranching"><span class="name">MDP</span>.<span class="name">instFintypeElemActOfFiniteBranching</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.actFinite"><span class="name">MDP</span>.<span class="name">actFinite</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.act₀"><span class="name">MDP</span>.<span class="name">act₀</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.act₀_eq_act"><span class="name">MDP</span>.<span class="name">act₀_eq_act</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.act₀_mem_iff_act_mem"><span class="name">MDP</span>.<span class="name">act₀_mem_iff_act_mem</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.act₀_prop"><span class="name">MDP</span>.<span class="name">act₀_prop</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instNonemptySubtypeMemFinsetAct₀"><span class="name">MDP</span>.<span class="name">instNonemptySubtypeMemFinsetAct₀</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.act₀_nonempty"><span class="name">MDP</span>.<span class="name">act₀_nonempty</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.P_ne_zero_sum_eq_one"><span class="name">MDP</span>.<span class="name">P_ne_zero_sum_eq_one</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.act.instDefault"><span class="name">MDP</span>.<span class="name">act</span>.<span class="name">instDefault</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.act₀.instDefault"><span class="name">MDP</span>.<span class="name">act₀</span>.<span class="name">instDefault</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.P_sum_one_iff"><span class="name">MDP</span>.<span class="name">P_sum_one_iff</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs₀"><span class="name">MDP</span>.<span class="name">succs₀</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs₀_eq_succs"><span class="name">MDP</span>.<span class="name">succs₀_eq_succs</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs₀_mem_eq_succs_mem"><span class="name">MDP</span>.<span class="name">succs₀_mem_eq_succs_mem</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instFiniteElemSuccsOfFiniteBranching"><span class="name">MDP</span>.<span class="name">instFiniteElemSuccsOfFiniteBranching</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs_finite"><span class="name">MDP</span>.<span class="name">succs_finite</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instFintypeElemSuccsOfFiniteBranching"><span class="name">MDP</span>.<span class="name">instFintypeElemSuccsOfFiniteBranching</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instNonemptySuccs"><span class="name">MDP</span>.<span class="name">instNonemptySuccs</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instNonemptySuccs₀"><span class="name">MDP</span>.<span class="name">instNonemptySuccs₀</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.prev_iff_succs"><span class="name">MDP</span>.<span class="name">prev_iff_succs</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.prev_univ_iff_succs_univ"><span class="name">MDP</span>.<span class="name">prev_univ_iff_succs_univ</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs_implies_succs_univ"><span class="name">MDP</span>.<span class="name">succs_implies_succs_univ</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instNonemptySuccsUniv"><span class="name">MDP</span>.<span class="name">instNonemptySuccsUniv</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs_univ₀"><span class="name">MDP</span>.<span class="name">succs_univ₀</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs_univ₀_spec"><span class="name">MDP</span>.<span class="name">succs_univ₀_spec</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs_univ₀_eq_succs_univ"><span class="name">MDP</span>.<span class="name">succs_univ₀_eq_succs_univ</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs_univ₀_mem_eq_succs_univ_mem"><span class="name">MDP</span>.<span class="name">succs_univ₀_mem_eq_succs_univ_mem</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs_Finite"><span class="name">MDP</span>.<span class="name">succs_Finite</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs_univ_Finite"><span class="name">MDP</span>.<span class="name">succs_univ_Finite</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instNonemptySuccsUniv₀"><span class="name">MDP</span>.<span class="name">instNonemptySuccsUniv₀</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instFiniteElemSuccs_univOfFiniteBranching"><span class="name">MDP</span>.<span class="name">instFiniteElemSuccs_univOfFiniteBranching</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.instFintypeElemSuccs_univOfFiniteBranching"><span class="name">MDP</span>.<span class="name">instFintypeElemSuccs_univOfFiniteBranching</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.tsum_succs_univ_P_eq_tsum_succs_P"><span class="name">MDP</span>.<span class="name">tsum_succs_univ_P_eq_tsum_succs_P</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.tsum_succs_P_eq_tsum_P"><span class="name">MDP</span>.<span class="name">tsum_succs_P_eq_tsum_P</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.tsum_succs_P_eq_one"><span class="name">MDP</span>.<span class="name">tsum_succs_P_eq_one</span></a></div><div class="nav_link"><a class="break_within" href="#MDP.succs_tsum_add_left"><span class="name">MDP</span>.<span class="name">succs_tsum_add_left</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="Markov-Decision-Process-MDP" class="markdown-heading">Markov Decision Process (MDP) <a class="hover-link" href="#Markov-Decision-Process-MDP">#</a></h1><p>MDP's are probabilistic transition systems consisting of sets of (possibly infinite) states and
+actions, equipped with a probability function.</p><h2 id="Main-definitions" class="markdown-heading">Main definitions <a class="hover-link" href="#Main-definitions">#</a></h2><ul><li><code><a href=".././MDP/Basic.html#MDP">MDP</a> State Act</code>: Markov Decision Process.</li><li><code><a href=".././MDP/Basic.html#MDP.P">MDP.P</a></code>: probability function relating states and actions to states.</li><li><code><a href=".././MDP/Basic.html#MDP.act">MDP.act</a></code>: enabled actions of a state.</li><li><code><a href=".././MDP/Basic.html#MDP.succs">MDP.succs</a></code>, <code><a href=".././MDP/Basic.html#MDP.succs_univ">MDP.succs_univ</a></code>: successors of states.</li><li><code><a href=".././MDP/Basic.html#MDP.prev">MDP.prev</a></code>, <code><a href=".././MDP/Basic.html#MDP.prev_univ">MDP.prev_univ</a></code>: predecessors of states.</li><li><code><a href=".././MDP/Basic.html#MDP.FiniteBranching">MDP.FiniteBranching</a></code>: MDP's where both <code><a href=".././MDP/Basic.html#MDP.succs">MDP.succs</a></code> and <code><a href=".././MDP/Basic.html#MDP.act">MDP.act</a></code> are finite.</li></ul></div><div class="decl" id="MDP"><div class="structure"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L21-L23">source</a></div><div class="decl_header"><span class="decl_kind">structure</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP"><span class="name">MDP</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href=".././foundational_types.html">Type</a> (max u_1 u_2)</div></div><ul class="structure_fields" id="MDP.mk"><li id="MDP.P'" class="structure_field"><div class="structure_field_info">P' : <span class="fn"><span class="fn">State</span> → <span class="fn"><span class="fn">Act</span> → <span class="fn"><a href=".././Init/Prelude.html#Option">Option</a> <span class="fn">(<a href=".././Mathlib/Probability/ProbabilityMassFunction/Basic.html#PMF">PMF</a> <span class="fn">State</span>)</span></span></span></span></div></li><li id="MDP.exists_P'_isSome" class="structure_field"><div class="structure_field_info">exists_P'_isSome<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+ : <span class="fn">∃ (<span class="fn">α</span> : <span class="fn">Act</span>), <span class="fn"><span class="fn">(<span class="fn"><span class="fn">self</span>.<a href=".././MDP/Basic.html#MDP.P'">P'</a></span> <span class="fn">s</span> <span class="fn">α</span>)</span>.<a href=".././Init/Data/Option/Basic.html#Option.isSome">isSome</a></span> <a href=".././Init/Prelude.html#Eq">=</a> <a href=".././Init/Prelude.html#Bool.true">true</a></span></div></li></ul><details id="instances-for-list-MDP" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.P"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L31-L32">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.P"><span class="name">MDP</span>.<span class="name">P</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">α</span> : <span class="fn">Act</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s'</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href=".././Mathlib/Data/ENNReal/Basic.html#ENNReal">ENNReal</a></div></div><p>The transition probability of going from <code>s</code> to <code>s'</code> using action <code>α</code></p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">s'</span></span> <a href=".././Init/Prelude.html#Eq">=</a>   <span class="fn">match <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P'">P'</a></span> <span class="fn">s</span> <span class="fn">α</span></span> with
+  | <span class="fn"><a href=".././Init/Prelude.html#Option.some">some</a> <span class="fn">pmf</span></span> =&gt; <span class="fn"><span class="fn">pmf</span> <span class="fn">s'</span></span>
+  | <span class="fn">x</span> =&gt; <span class="fn">0</span></span></li></ul></details><details id="instances-for-list-MDP.P" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.act"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L34-L36">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.act"><span class="name">MDP</span>.<span class="name">act</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">Act</span></span></div></div><p>An action is enabled in state <code>s</code> iff choosing this action gives a positive probability to any
+other state.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><a href=".././Mathlib/Algebra/Notation/Support.html#Function.support">Function.support</a> <span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span>)</span></span></li></ul></details><details id="instances-for-list-MDP.act" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.succs"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L37-L39">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs"><span class="name">MDP</span>.<span class="name">succs</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">α</span> : <span class="fn">Act</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">State</span></span></div></div><p>α-successors of <code>s</code> are states <code>s'</code> which have a positive probability for a given action <code>α</code>,
+such that <code>0 &lt; M.<a href=".././MDP/Basic.html#MDP.P">P</a> s α s'</code>.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">α</span> <span class="fn">s</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><a href=".././Mathlib/Algebra/Notation/Support.html#Function.support">Function.support</a> <span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">α</span>)</span></span></li></ul></details><details id="instances-for-list-MDP.succs" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.prev"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L40-L41">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.prev"><span class="name">MDP</span>.<span class="name">prev</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">α</span> : <span class="fn">Act</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s'</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">State</span></span></div></div><p>α-predecessors of <code>s</code> are states <code>s'</code> such that <code>s' ∈ M.<a href=".././MDP/Basic.html#MDP.succs">succs</a> α s</code>.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.prev">prev</a></span> <span class="fn">α</span> <span class="fn">s'</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <a href=".././Mathlib/Data/Set/Defs.html#setOf">{</a><span class="fn">s</span> <a href=".././Mathlib/Data/Set/Defs.html#setOf">:</a> <span class="fn">State</span> <a href=".././Mathlib/Data/Set/Defs.html#setOf">|</a> <span class="fn">s'</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">α</span> <span class="fn">s</span></span><a href=".././Mathlib/Data/Set/Defs.html#setOf">}</a></li></ul></details><details id="instances-for-list-MDP.prev" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.succs_univ"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L43-L44">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs_univ"><span class="name">MDP</span>.<span class="name">succs_univ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">State</span></span></div></div><p>Successors of <code>s</code> are those <code>s'</code> with <code>s' ∈ M.<a href=".././MDP/Basic.html#MDP.succs">succs</a> α</code> for some <code>α</code>.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">⋃ (<span class="fn">α</span> : <span class="fn">Act</span>), <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">α</span> <span class="fn">s</span></span></span></li></ul></details><details id="instances-for-list-MDP.succs_univ" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.prev_univ"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L45-L46">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.prev_univ"><span class="name">MDP</span>.<span class="name">prev_univ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">State</span></span></div></div><p>Predecessors of <code>s</code> are those <code>s'</code> with <code>s' ∈ M.<a href=".././MDP/Basic.html#MDP.prev">prev</a> α</code> for some <code>α</code>.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.prev_univ">prev_univ</a></span> <span class="fn">s</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">⋃ (<span class="fn">α</span> : <span class="fn">Act</span>), <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.prev">prev</a></span> <span class="fn">α</span> <span class="fn">s</span></span></span></li></ul></details><details id="instances-for-list-MDP.prev_univ" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.mem_prev_univ_iff_mem_succs_univ"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L47-L48">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.mem_prev_univ_iff_mem_succs_univ"><span class="name">MDP</span>.<span class="name">mem_prev_univ_iff_mem_succs_univ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s </span><span class="fn">s'</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">s</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.prev_univ">prev_univ</a></span> <span class="fn">s'</span></span> <a href=".././Init/Core.html#Iff">↔</a> <span class="fn">s'</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn">⋯</span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">⋯</span></li></ul></details><details id="instances-for-list-MDP.mem_prev_univ_iff_mem_succs_univ" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.FiniteBranching"><div class="class"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L50-L52">source</a></div><div class="decl_header"><span class="decl_kind">class</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.FiniteBranching"><span class="name">MDP</span>.<span class="name">FiniteBranching</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href=".././foundational_types.html">Prop</a></div></div><ul class="structure_fields" id="MDP.FiniteBranching.mk"><li id="MDP.FiniteBranching.act_fin" class="structure_field"><div class="structure_field_info">act_fin<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+ : <span class="fn"><span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span>.<a href=".././Mathlib/Data/Finite/Defs.html#Set.Finite">Finite</a></span></div></li><li id="MDP.FiniteBranching.succs_fin" class="structure_field"><div class="structure_field_info">succs_fin<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">α</span> : <span class="fn">Act</span>)</span></span>
+ : <span class="fn"><span class="fn">(<a href=".././Mathlib/Algebra/Notation/Support.html#Function.support">Function.support</a> <span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">α</span>)</span>)</span>.<a href=".././Mathlib/Data/Finite/Defs.html#Set.Finite">Finite</a></span></div></li></ul><details class="instances"><summary>Instances</summary><ul id="instances-list-MDP.FiniteBranching" class="instances-list"></ul></details></div></div><div class="decl" id="MDP.ofP"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L54-L73">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.ofP"><span class="name">MDP</span>.<span class="name">ofP</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><span class="fn">State</span> → <span class="fn"><span class="fn">Act</span> → <span class="fn"><span class="fn">State</span> → <a href=".././Mathlib/Data/ENNReal/Basic.html#ENNReal">ENNReal</a></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h₁</span> : <span class="fn">∀ (<span class="fn">s</span> : <span class="fn">State</span>) (<span class="fn">α</span> : <span class="fn">Act</span>), <span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s'</span> : <span class="fn">State</span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> <span class="fn"><span class="fn">P</span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">s'</span></span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">0</span> <a href=".././Init/Prelude.html#Or">∨</a> <span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s'</span> : <span class="fn">State</span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> <span class="fn"><span class="fn">P</span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">s'</span></span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">1</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h₂</span> : <span class="fn">∀ (<span class="fn">s</span> : <span class="fn">State</span>), <span class="fn">∃ (<span class="fn">α</span> : <span class="fn">Act</span>) (<span class="fn">s'</span> : <span class="fn">State</span>), <span class="fn">0</span> <a href=".././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn"><span class="fn">P</span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">s'</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation">One or more equations did not get rendered due to their size.</li></ul></details><details id="instances-for-list-MDP.ofP" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.ofP_P"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L75-L81">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.ofP_P"><span class="name">MDP</span>.<span class="name">ofP_P</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><span class="fn">State</span> → <span class="fn"><span class="fn">Act</span> → <span class="fn"><span class="fn">State</span> → <a href=".././Mathlib/Data/ENNReal/Basic.html#ENNReal">ENNReal</a></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h₁</span> : <span class="fn">∀ (<span class="fn">s</span> : <span class="fn">State</span>) (<span class="fn">α</span> : <span class="fn">Act</span>), <span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s'</span> : <span class="fn">State</span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> <span class="fn"><span class="fn">P</span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">s'</span></span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">0</span> <a href=".././Init/Prelude.html#Or">∨</a> <span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s'</span> : <span class="fn">State</span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> <span class="fn"><span class="fn">P</span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">s'</span></span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">1</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h₂</span> : <span class="fn">∀ (<span class="fn">s</span> : <span class="fn">State</span>), <span class="fn">∃ (<span class="fn">α</span> : <span class="fn">Act</span>) (<span class="fn">s'</span> : <span class="fn">State</span>), <span class="fn">0</span> <a href=".././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn"><span class="fn">P</span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">s'</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<a href=".././MDP/Basic.html#MDP.ofP">ofP</a> <span class="fn">P</span> <span class="fn">h₁</span> <span class="fn">h₂</span>)</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">P</span></div></div></div></div><div class="decl" id="MDP.P_le_one"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L83-L87">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.P_le_one"><span class="name">MDP</span>.<span class="name">P_le_one</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">α</span> : <span class="fn">Act</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s'</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">s'</span></span> <a href=".././Init/Prelude.html#LE.le">≤</a> <span class="fn">1</span></div></div></div></div><div class="decl" id="MDP.P_ne_top"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L89-L90">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.P_ne_top"><span class="name">MDP</span>.<span class="name">P_ne_top</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">α</span> : <span class="fn">Act</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s'</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">s'</span></span> <a href=".././Init/Core.html#Ne">≠</a> <a href=".././Mathlib/Order/Notation.html#Top.top">⊤</a></div></div></div></div><div class="decl" id="MDP.instFiniteElemActOfFintype"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L92-L92">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instFiniteElemActOfFintype"><span class="name">MDP</span>.<span class="name">instFiniteElemActOfFintype</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href=".././Mathlib/Data/Fintype/Defs.html#Fintype">Fintype</a> <span class="fn">Act</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Finite/Defs.html#Finite">Finite</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span></span></span></div></div></div></div><div class="decl" id="MDP.instFintypeAct"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L93-L93">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instFintypeAct"><span class="name">MDP</span>.<span class="name">instFintypeAct</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href=".././Mathlib/Data/Fintype/Defs.html#Fintype">Fintype</a> <span class="fn">Act</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Fintype/Defs.html#Fintype">Fintype</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span></span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.instFintypeAct">instFintypeAct</a></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><a href=".././Mathlib/Data/Fintype/EquivFin.html#Fintype.ofFinite">Fintype.ofFinite</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span></span></span></li></ul></details></div></div><div class="decl" id="MDP.instNonemptyAct"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L94-L98">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instNonemptyAct"><span class="name">MDP</span>.<span class="name">instNonemptyAct</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Init/Prelude.html#Nonempty">Nonempty</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span></span></span></div></div></div></div><div class="decl" id="MDP.default_act"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L100-L101">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.default_act"><span class="name">MDP</span>.<span class="name">default_act</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">Act</span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.default_act">default_act</a></span> <span class="fn">s</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">⋯</span>.<a href=".././Init/Classical.html#Exists.choose">choose</a></span></li></ul></details><details id="instances-for-list-MDP.default_act" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.default_act_spec"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L102-L104">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.default_act_spec"><span class="name">MDP</span>.<span class="name">default_act_spec</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.default_act">default_act</a></span> <span class="fn">s</span></span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MDP.instFiniteElemActOfFiniteBranching"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L106-L106">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instFiniteElemActOfFiniteBranching"><span class="name">MDP</span>.<span class="name">instFiniteElemActOfFiniteBranching</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">i</span> : <span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Finite/Defs.html#Finite">Finite</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span></span></span></div></div></div></div><div class="decl" id="MDP.instFintypeElemActOfFiniteBranching"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L107-L107">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instFintypeElemActOfFiniteBranching"><span class="name">MDP</span>.<span class="name">instFintypeElemActOfFiniteBranching</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Fintype/Defs.html#Fintype">Fintype</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span></span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.instFintypeElemActOfFiniteBranching">instFintypeElemActOfFiniteBranching</a></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><a href=".././Mathlib/Data/Fintype/EquivFin.html#Fintype.ofFinite">Fintype.ofFinite</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span></span></span></li></ul></details></div></div><div class="decl" id="MDP.actFinite"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L108-L108">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.actFinite"><span class="name">MDP</span>.<span class="name">actFinite</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">i</span> : <span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span>.<a href=".././Mathlib/Data/Finite/Defs.html#Set.Finite">Finite</a></span></div></div></div></div><div class="decl" id="MDP.act₀"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L110-L110">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.act₀"><span class="name">MDP</span>.<span class="name">act₀</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Finset/Defs.html#Finset">Finset</a> <span class="fn">Act</span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act₀">act₀</a></span> <span class="fn">s</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span>.<a href=".././Mathlib/Data/Fintype/Sets.html#Set.toFinset">toFinset</a></span></li></ul></details><details id="instances-for-list-MDP.act₀" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.act₀_eq_act"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L112-L113">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.act₀_eq_act"><span class="name">MDP</span>.<span class="name">act₀_eq_act</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">i</span> : <span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act₀">act₀</a></span> <span class="fn">s</span>)</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MDP.act₀_mem_iff_act_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L115-L117">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.act₀_mem_iff_act_mem"><span class="name">MDP</span>.<span class="name">act₀_mem_iff_act_mem</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn">a</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act₀">act₀</a></span> <span class="fn">s</span></span> <a href=".././Init/Core.html#Iff">↔</a> <span class="fn">a</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MDP.act₀_prop"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L118-L119">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.act₀_prop"><span class="name">MDP</span>.<span class="name">act₀_prop</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">a</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act₀">act₀</a></span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<a href=".././Mathlib/Algebra/Notation/Support.html#Function.support">Function.support</a> <span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">a</span>)</span>)</span>.<a href=".././Mathlib/Data/Set/Defs.html#Set.Nonempty">Nonempty</a></span></div></div></div></div><div class="decl" id="MDP.instNonemptySubtypeMemFinsetAct₀"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L121-L122">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instNonemptySubtypeMemFinsetAct₀"><span class="name">MDP</span>.<span class="name">instNonemptySubtypeMemFinsetAct₀</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Init/Prelude.html#Nonempty">Nonempty</a> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act₀">act₀</a></span> <span class="fn">s</span>)</span></span></span></div></div></div></div><div class="decl" id="MDP.act₀_nonempty"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L124-L125">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.act₀_nonempty"><span class="name">MDP</span>.<span class="name">act₀_nonempty</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act₀">act₀</a></span> <span class="fn">s</span>)</span>.<a href=".././Mathlib/Data/Finset/Empty.html#Finset.Nonempty">Nonempty</a></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn">⋯</span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">⋯</span></li></ul></details><details id="instances-for-list-MDP.act₀_nonempty" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.P_ne_zero_sum_eq_one"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L127-L132">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.P_ne_zero_sum_eq_one"><span class="name">MDP</span>.<span class="name">P_ne_zero_sum_eq_one</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s'</span> : <span class="fn">State</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <a href=".././Init/Prelude.html#Not">¬</a><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">a</span> <span class="fn">s'</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">0</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s''</span> : <span class="fn">State</span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">a</span> <span class="fn">s''</span></span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">1</span></div></div></div></div><div class="decl" id="MDP.act.instDefault"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L134-L134">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.act.instDefault"><span class="name">MDP</span>.<span class="name">act</span>.<span class="name">instDefault</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Init/Prelude.html#Inhabited">Inhabited</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span></span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href=".././MDP/Basic.html#MDP.act.instDefault">MDP.act.instDefault</a> <span class="fn">M</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <a href=".././Mathlib/Logic/Nonempty.html#Classical.inhabited_of_nonempty'">Classical.inhabited_of_nonempty'</a></li></ul></details></div></div><div class="decl" id="MDP.act₀.instDefault"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L136-L137">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.act₀.instDefault"><span class="name">MDP</span>.<span class="name">act₀</span>.<span class="name">instDefault</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Init/Prelude.html#Inhabited">Inhabited</a> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act₀">act₀</a></span> <span class="fn">s</span>)</span></span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href=".././MDP/Basic.html#MDP.act₀.instDefault">MDP.act₀.instDefault</a> <span class="fn">M</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <a href=".././Mathlib/Logic/Nonempty.html#Classical.inhabited_of_nonempty'">Classical.inhabited_of_nonempty'</a></li></ul></details></div></div><div class="decl" id="MDP.P_sum_one_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L139-L146">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.P_sum_one_iff"><span class="name">MDP</span>.<span class="name">P_sum_one_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s'</span> : <span class="fn">State</span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">a</span> <span class="fn">s'</span></span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">1</span> <a href=".././Init/Core.html#Iff">↔</a> <span class="fn">a</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MDP.succs₀"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L150-L151">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs₀"><span class="name">MDP</span>.<span class="name">succs₀</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">i</span> : <span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">α</span> : <span class="fn">Act</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Finset/Defs.html#Finset">Finset</a> <span class="fn">State</span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs₀">succs₀</a></span> <span class="fn">α</span> <span class="fn">s</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">⋯</span>.<a href=".././Mathlib/Data/Set/Finite/Basic.html#Set.Finite.toFinset">toFinset</a></span></li></ul></details><details id="instances-for-list-MDP.succs₀" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.succs₀_eq_succs"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L153-L154">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs₀_eq_succs"><span class="name">MDP</span>.<span class="name">succs₀_eq_succs</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs₀">succs₀</a></span> <span class="fn">α</span> <span class="fn">s</span>)</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">α</span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MDP.succs₀_mem_eq_succs_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L156-L158">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs₀_mem_eq_succs_mem"><span class="name">MDP</span>.<span class="name">succs₀_mem_eq_succs_mem</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s </span><span class="fn">s'</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn">s'</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs₀">succs₀</a></span> <span class="fn">a</span> <span class="fn">s</span></span> <a href=".././Init/Core.html#Iff">↔</a> <span class="fn">s'</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">a</span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MDP.instFiniteElemSuccsOfFiniteBranching"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L160-L160">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instFiniteElemSuccsOfFiniteBranching"><span class="name">MDP</span>.<span class="name">instFiniteElemSuccsOfFiniteBranching</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Finite/Defs.html#Finite">Finite</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">α</span> <span class="fn">s</span>)</span></span></span></div></div></div></div><div class="decl" id="MDP.succs_finite"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L161-L161">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs_finite"><span class="name">MDP</span>.<span class="name">succs_finite</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">α</span> <span class="fn">s</span>)</span>.<a href=".././Mathlib/Data/Finite/Defs.html#Set.Finite">Finite</a></span></div></div></div></div><div class="decl" id="MDP.instFintypeElemSuccsOfFiniteBranching"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L162-L162">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instFintypeElemSuccsOfFiniteBranching"><span class="name">MDP</span>.<span class="name">instFintypeElemSuccsOfFiniteBranching</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Fintype/Defs.html#Fintype">Fintype</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">α</span> <span class="fn">s</span>)</span></span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.instFintypeElemSuccsOfFiniteBranching">instFintypeElemSuccsOfFiniteBranching</a></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><a href=".././Mathlib/Data/Fintype/EquivFin.html#Fintype.ofFinite">Fintype.ofFinite</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">α</span> <span class="fn">s</span>)</span></span></span></li></ul></details></div></div><div class="decl" id="MDP.instNonemptySuccs"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L164-L168">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instNonemptySuccs"><span class="name">MDP</span>.<span class="name">instNonemptySuccs</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">α</span> : <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Init/Prelude.html#Nonempty">Nonempty</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">(↑<span class="fn">α</span>)</span> <span class="fn">s</span>)</span></span></span></div></div></div></div><div class="decl" id="MDP.instNonemptySuccs₀"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L169-L171">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instNonemptySuccs₀"><span class="name">MDP</span>.<span class="name">instNonemptySuccs₀</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">α</span> : <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Init/Prelude.html#Nonempty">Nonempty</a> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs₀">succs₀</a></span> <span class="fn">(↑<span class="fn">α</span>)</span> <span class="fn">s</span>)</span></span></span></div></div></div></div><div class="decl" id="MDP.prev_iff_succs"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L173-L173">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.prev_iff_succs"><span class="name">MDP</span>.<span class="name">prev_iff_succs</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s </span><span class="fn">s'</span> : <span class="fn">State</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn">s'</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.prev">prev</a></span> <span class="fn">α</span> <span class="fn">s</span></span> <a href=".././Init/Core.html#Iff">↔</a> <span class="fn">s</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">α</span> <span class="fn">s'</span></span></div></div></div></div><div class="decl" id="MDP.prev_univ_iff_succs_univ"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L174-L176">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.prev_univ_iff_succs_univ"><span class="name">MDP</span>.<span class="name">prev_univ_iff_succs_univ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s </span><span class="fn">s'</span> : <span class="fn">State</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn">s'</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.prev_univ">prev_univ</a></span> <span class="fn">s</span></span> <a href=".././Init/Core.html#Iff">↔</a> <span class="fn">s</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s'</span></span></div></div></div></div><div class="decl" id="MDP.succs_implies_succs_univ"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L178-L181">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs_implies_succs_univ"><span class="name">MDP</span>.<span class="name">succs_implies_succs_univ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">s'</span> : <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">α</span> <span class="fn">s</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">↑<span class="fn">s'</span></span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MDP.instNonemptySuccsUniv"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L183-L187">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instNonemptySuccsUniv"><span class="name">MDP</span>.<span class="name">instNonemptySuccsUniv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Init/Prelude.html#Nonempty">Nonempty</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span>)</span></span></span></div></div></div></div><div class="decl" id="MDP.succs_univ₀"><div class="def"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L191-L191">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs_univ₀"><span class="name">MDP</span>.<span class="name">succs_univ₀</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href=".././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">State</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Finset/Defs.html#Finset">Finset</a> <span class="fn">State</span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ₀">succs_univ₀</a></span> <span class="fn">s</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act₀">act₀</a></span> <span class="fn">s</span>)</span>.<a href=".././Mathlib/Data/Finset/Union.html#Finset.biUnion">biUnion</a></span> <span class="fn">fun (<span class="fn">x</span> : <span class="fn">Act</span>) =&gt; <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs₀">succs₀</a></span> <span class="fn">x</span> <span class="fn">s</span></span></span></span></li></ul></details><details id="instances-for-list-MDP.succs_univ₀" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MDP.succs_univ₀_spec"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L192-L198">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs_univ₀_spec"><span class="name">MDP</span>.<span class="name">succs_univ₀_spec</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href=".././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">State</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">s </span><span class="fn">s'</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">s'</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ₀">succs_univ₀</a></span> <span class="fn">s</span></span> → <span class="fn">∃ (<span class="fn">α</span> : <span class="fn">Act</span>), <span class="fn">0</span> <a href=".././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">s'</span></span></span></span></div></div></div></div><div class="decl" id="MDP.succs_univ₀_eq_succs_univ"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L200-L208">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs_univ₀_eq_succs_univ"><span class="name">MDP</span>.<span class="name">succs_univ₀_eq_succs_univ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href=".././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">State</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ₀">succs_univ₀</a></span> <span class="fn">s</span>)</span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MDP.succs_univ₀_mem_eq_succs_univ_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L210-L213">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs_univ₀_mem_eq_succs_univ_mem"><span class="name">MDP</span>.<span class="name">succs_univ₀_mem_eq_succs_univ_mem</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href=".././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">State</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">s </span><span class="fn">s'</span> : <span class="fn">State</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">s'</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ₀">succs_univ₀</a></span> <span class="fn">s</span></span> <a href=".././Init/Core.html#Iff">↔</a> <span class="fn">s'</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MDP.succs_Finite"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L216-L218">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs_Finite"><span class="name">MDP</span>.<span class="name">succs_Finite</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <span class="fn">State</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">s</span> <span class="fn">a</span>)</span>.<a href=".././Mathlib/Data/Finite/Defs.html#Set.Finite">Finite</a></span></div></div></div></div><div class="decl" id="MDP.succs_univ_Finite"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L219-L221">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs_univ_Finite"><span class="name">MDP</span>.<span class="name">succs_univ_Finite</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href=".././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">State</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span>)</span>.<a href=".././Mathlib/Data/Finite/Defs.html#Set.Finite">Finite</a></span></div></div></div></div><div class="decl" id="MDP.instNonemptySuccsUniv₀"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L223-L225">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instNonemptySuccsUniv₀"><span class="name">MDP</span>.<span class="name">instNonemptySuccsUniv₀</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href=".././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">State</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Init/Prelude.html#Nonempty">Nonempty</a> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ₀">succs_univ₀</a></span> <span class="fn">s</span>)</span></span></span></div></div></div></div><div class="decl" id="MDP.instFiniteElemSuccs_univOfFiniteBranching"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L227-L229">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instFiniteElemSuccs_univOfFiniteBranching"><span class="name">MDP</span>.<span class="name">instFiniteElemSuccs_univOfFiniteBranching</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href=".././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">State</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Finite/Defs.html#Finite">Finite</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span>)</span></span></span></div></div></div></div><div class="decl" id="MDP.instFintypeElemSuccs_univOfFiniteBranching"><div class="instance"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L230-L230">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable instance</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.instFintypeElemSuccs_univOfFiniteBranching"><span class="name">MDP</span>.<span class="name">instFintypeElemSuccs_univOfFiniteBranching</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href=".././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">State</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.FiniteBranching">FiniteBranching</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Data/Fintype/Defs.html#Fintype">Fintype</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span>)</span></span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.instFintypeElemSuccs_univOfFiniteBranching">instFintypeElemSuccs_univOfFiniteBranching</a></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><a href=".././Mathlib/Data/Fintype/EquivFin.html#Fintype.ofFinite">Fintype.ofFinite</a> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span>)</span></span></span></li></ul></details></div></div><div class="decl" id="MDP.tsum_succs_univ_P_eq_tsum_succs_P"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L234-L238">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.tsum_succs_univ_P_eq_tsum_succs_P"><span class="name">MDP</span>.<span class="name">tsum_succs_univ_P_eq_tsum_succs_P</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s'</span> : <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span>)</span></span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">↑<span class="fn">s'</span></span></span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s'</span> : <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">α</span> <span class="fn">s</span>)</span></span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">↑<span class="fn">s'</span></span></span></span></div></div></div></div><div class="decl" id="MDP.tsum_succs_P_eq_tsum_P"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L240-L242">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.tsum_succs_P_eq_tsum_P"><span class="name">MDP</span>.<span class="name">tsum_succs_P_eq_tsum_P</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s'</span> : <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs">succs</a></span> <span class="fn">α</span> <span class="fn">s</span>)</span></span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">↑<span class="fn">s'</span></span></span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s'</span> : <span class="fn">State</span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">s'</span></span></span></div></div></div></div><div class="decl" id="MDP.tsum_succs_P_eq_one"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L244-L245">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.tsum_succs_P_eq_one"><span class="name">MDP</span>.<span class="name">tsum_succs_P_eq_one</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">α</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span></span> → <span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s'</span> : <span class="fn">State</span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">s'</span></span></span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">1</span></span></div></div></div></div><div class="decl" id="MDP.succs_tsum_add_left"><div class="theorem"><div class="gh_link"><a href="https://github.com/aurora-dtu/theory/blob/dbdaa2d51c237b1445a801383b2ee8d6ea0ba1a0/MDP/Basic.lean#L247-L249">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href=".././MDP/Basic.html#MDP.succs_tsum_add_left"><span class="name">MDP</span>.<span class="name">succs_tsum_add_left</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">State</span> : <a href=".././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Act</span> : <a href=".././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><a href=".././MDP/Basic.html#MDP">MDP</a> <span class="fn">State</span> <span class="fn">Act</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">State</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <span class="fn">Act</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <a href=".././Mathlib/Data/ENNReal/Basic.html#ENNReal">ENNReal</a>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">α</span> <a href=".././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.act">act</a></span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span>)</span></span> → <a href=".././Mathlib/Data/ENNReal/Basic.html#ENNReal">ENNReal</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s'</span> : <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span>)</span></span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> (<span class="fn"><span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.P">P</a></span> <span class="fn">s</span> <span class="fn">α</span> <span class="fn">↑<span class="fn">s'</span></span></span> <a href=".././Init/Prelude.html#HMul.hMul">*</a> <span class="fn">a</span> <a href=".././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn"><span class="fn">f</span> <span class="fn">s'</span></span>)</span> <a href=".././Init/Prelude.html#Eq">=</a> <span class="fn">a</span> <a href=".././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn"><a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">∑'</a> (<span class="fn">s'</span> : <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">M</span>.<a href=".././MDP/Basic.html#MDP.succs_univ">succs_univ</a></span> <span class="fn">s</span>)</span></span>)<a href=".././Mathlib/Topology/Algebra/InfiniteSum/Defs.html#tsum">,</a> <span class="fn"><span class="fn">f</span> <span class="fn">s'</span></span></span></div></div></div></div></main>
+<nav class="nav"><iframe src=".././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>
