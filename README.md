@@ -6,7 +6,7 @@ This artifact contains the Lean project of the formalization of the submitted pa
 
 ## Accessing formalization
 
-One can access the generated documentation anonymously online at https://anonymous.4open.science/w/2026-itp-artifact-641A/doc/, or locally by navigating to `doc/` and starting a local server (for example with `cd doc && python3 -m http.server` and then visiting http://localhost:8000).
+One can access the generated documentation anonymously online at [https://anonymous.4open.science/w/2026-itp-artifact-641A/doc/](https://anonymous.4open.science/w/2026-itp-artifact-641A/doc/), or locally by navigating to `doc/` and starting a local server (for example with `cd doc && python3 -m http.server` and then visiting [http://localhost:8000](http://localhost:8000)).
 
 Refer to [`Paper.lean`](https://anonymous.4open.science/w/2026-itp-artifact-641A/doc/Paper.html) for an overview linking all definitions, theorems, and lemmas from the paper to their respective Lean formulation.
 
